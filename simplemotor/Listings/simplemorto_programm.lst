@@ -1,0 +1,49 @@
+C51 COMPILER V9.60.7.0   SIMPLEMORTO_PROGRAMM                                              10/18/2023 12:50:44 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SIMPLEMORTO_PROGRAMM
+OBJECT MODULE PLACED IN .\Objects\simplemorto_programm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE simplemorto_programm.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT
+                    -(.\Listings\simplemorto_programm.lst) TABS(2) OBJECT(.\Objects\simplemorto_programm.obj)
+
+line level    source
+
+   1          /*Interface 2 simple motor with AT89c51 MC */
+   2          
+   3          #include<reg51.h>
+   4          
+   5          void delay(int a)
+   6          {
+   7   1        int i,j;
+   8   1        for(i=0; i<a;i++)
+   9   1        {
+  10   2          for(j=0;j<250;j++)
+  11   2          {
+  12   3          }
+  13   2        }
+  14   1      }
+  15          
+  16          void main()
+  17          {
+  18   1        while(1)
+  19   1        {
+  20   2          P2=0x09;
+  21   2          delay(5000);
+  22   2          P2=0x06;
+  23   2          delay(5000);
+  24   2        }
+  25   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     56    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

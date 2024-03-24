@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\countercprog.obj" 
+TO ".\Objects\counterc" 
+PRINT(".\Listings\counterc.m51")

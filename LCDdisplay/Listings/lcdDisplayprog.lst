@@ -1,0 +1,95 @@
+C51 COMPILER V9.60.7.0   LCDDISPLAYPROG                                                    10/17/2023 10:27:32 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCDDISPLAYPROG
+OBJECT MODULE PLACED IN .\Objects\lcdDisplayprog.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcdDisplayprog.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\lcdDisplayprog.lst) TABS(2) OBJECT(.\Objects\lcdDisplayprog.obj)
+
+line level    source
+
+   1          /*LCD display interfacing with AT89C51 MC */
+   2          #include<reg51.h>
+   3          sbit rs=P3^0;
+   4          sbit rw=P3^1;
+   5          sbit en=P3^2;
+   6          
+   7          void lcd_init();
+   8          void lcd_cmd(unsigned char ch);
+   9          void lcd_data(unsigned char ch);
+  10          void lcd_string(char *str);
+  11          void delay(int a);
+  12          
+  13          void main()
+  14          {
+  15   1        lcd_init();
+  16   1        lcd_string("Hi Sudharsan");
+  17   1        lcd_cmd(0xC0);//2nd line 1st position.
+  18   1        lcd_string("Welcome.");
+  19   1        delay(1000);
+  20   1        lcd_cmd(0x01);
+  21   1        lcd_string("Welcome Home");
+  22   1        while(1)
+  23   1        {
+  24   2        }
+  25   1      }
+  26          void lcd_init()
+  27          {
+  28   1        lcd_cmd(0x38);//8bit 2line.
+  29   1        lcd_cmd(0x0C);//display ON cursor off.
+  30   1        lcd_cmd(0x01);//clear display.
+  31   1        lcd_cmd(0x80);//1st line 1st position.
+  32   1      }
+  33          void lcd_cmd(unsigned char ch)
+  34          {
+  35   1        P2=ch;
+  36   1        rs=0;
+  37   1        rw=0;
+  38   1        en=1;
+  39   1        delay(10);
+  40   1        en=0;
+  41   1      }
+  42          void lcd_string(char *str)
+  43          {
+  44   1        int i=0;
+  45   1        while (str[i] !='\0')
+  46   1        {
+  47   2          lcd_data(str[i]);
+  48   2          i++;
+  49   2        }
+  50   1      }
+  51          void lcd_data(unsigned char ch)
+  52          {
+  53   1        P2=ch;
+  54   1        rs=1;
+C51 COMPILER V9.60.7.0   LCDDISPLAYPROG                                                    10/17/2023 10:27:32 PAGE 2   
+
+  55   1        rw=0;
+  56   1        en=1;
+  57   1        delay(10);
+  58   1        en=0;
+  59   1      }
+  60          void delay(int a)
+  61          {
+  62   1        int i,j;
+  63   1        for(i=0;i<a;i++)//10*250*1.058usec.
+  64   1        {
+  65   2          for(j=0;j<250;j++)
+  66   2          {
+  67   3          }
+  68   2        }
+  69   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    178    ----
+   CONSTANT SIZE    =     35    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

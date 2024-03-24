@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\simplemorto_programm.obj" 
+TO ".\Objects\simplemotorprogram" 
+PRINT(".\Listings\simplemotorprogram.m51")
